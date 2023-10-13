@@ -1,0 +1,35 @@
+Pages:
+Home
+    - Main view, see all recipes created
+    - includes categories (breakfast, lunch, dinner)
+
+Login/Register
+    - User Login
+    - User Registration
+
+User
+    - Show user profile
+    - Allows user to make changes to profile
+
+User-Recipes
+    - Shows all recipes user has created, with more detail than the homepage
+    - Allows user to edit/delete recipe
+
+Add-Recipes
+    - Form that allows users to add a recipe to DB
+
+Recipe-details
+    -Shows expanded view of recipe
+
+Search
+    - Page that will allow users to filter the results of the search based on keyword, category, ingredients
+
+
+Features (Base features)
+    - Login/register
+    - Edit profile
+    - Create, edit, get, delete recipes
+    - Show details on recipe
+    - Search and filter recipes
+    - Favorite/Save recipes
+    - Recipe categories
