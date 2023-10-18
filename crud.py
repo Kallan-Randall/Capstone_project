@@ -17,9 +17,11 @@ def get_user_by_username_or_email(identifier):
     """Gets a user from the database by username or email and returns it."""
     return User.query.filter(or_(User.username == identifier, User.email == identifier)).first()
 
+def get_recipes(user:User):
+    """Gets all recipes by user id."""
+    return Recipe.query.filter_by(user_id=user.user_id).all()
 
-
-
-
-
-
+def create_recipe(title, category, description, ingredients, instructions, cooking_time):
+    """Creates a new recipe object and returns it."""
+    new_recipe = Recipe(title=title, category=category, description=description, ingredients=ingredients, instructions=instructions, cooking_time=cooking_time)
+    return new_recipe

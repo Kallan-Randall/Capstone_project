@@ -47,7 +47,25 @@ def login():
     else:
         flash("login failed. Check you email/username and password.")
         return redirect("/")
-        
+    
+@app.route("/recipes", methods=["POST"])
+def create_recipe():
+    """Creates a new recipe"""
+    title = request.form.get("title")
+    category = request.form.get("category")
+    description = request.form.get("description")
+    ingredients = request.form.get("ingredients")
+    instructions = request.form.get("instructions")
+    cooking_time = request.form.get("cooking_time")
+
+    new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time)
+
+    db.session.add(new_recipe)
+    db.session.commit()
+
+    flash("Recipe created successfully!")
+
+    return redirect("/recipes")
 
 
 
