@@ -16,6 +16,10 @@ app.jinja_env.undefined = StrictUndefined
 def home():
     return render_template("home.html")
 
+@app.route("/recipes")
+def recipe():
+    return render_template("recipes.html")
+
 @app.route("/users", methods=["POST"])
 def register_user():
     "Creates a new user."

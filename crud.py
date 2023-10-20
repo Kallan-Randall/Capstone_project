@@ -1,4 +1,4 @@
-"""This module is responsable for CRUD operations in the Postgres database."""
+"""This module is responsible for CRUD operations in the Postgres database."""
 from sqlalchemy import or_
 from model import db, connect_to_db, User, Recipe
 
