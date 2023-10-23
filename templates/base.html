@@ -10,13 +10,25 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    <div class="header">
+        
+        <div class="logo">Better Recipes</div>
+        <div class="auth-buttons">
+            <button onclick="location.href='/login'">Login</button>
+            <button onclick="location.href='/register'">Register</button>
+        </div>
+    </div>
     {% for msg in get_flashed_messages() %}
     <p class="flash-msg">
         {{ msg }}
     </p>
     {% endfor %}
+    {% block body %}
     
-    {% block body %}{% endblock %}
+    
+    
+    {% endblock %}
     {% block after_body %}{% endblock %}
+
 </body>
 </html>

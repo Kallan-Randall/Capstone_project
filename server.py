@@ -16,6 +16,14 @@ app.jinja_env.undefined = StrictUndefined
 def home():
     return render_template("home.html")
 
+@app.route("/register")
+def register_page():
+    return render_template("register.html")
+
+@app.route("/login")
+def login_page():
+    return render_template("login.html")
+
 @app.route("/recipes")
 def recipe():
     return render_template("recipes.html")
