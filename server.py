@@ -3,7 +3,7 @@
 # imports here
 from flask import Flask, render_template, request, flash, session, redirect, url_for
 
-from model import connect_to_db, db
+from model import connect_to_db, db, Recipe, User
 import crud
 
 from jinja2 import StrictUndefined
@@ -14,7 +14,11 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    last_5_recipes = crud.get_5_last_recipes()
+    
+    user_usernames = [(recipe.user.username)]
+    
+    return render_template("home.html", last_5_recipes=last_5_recipes, user_usernames=user_usernames)
 
 @app.route("/register")
 def register_page():

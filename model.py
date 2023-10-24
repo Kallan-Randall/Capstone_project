@@ -1,7 +1,7 @@
 """Models for recipe app."""
 import os
 from flask_sqlalchemy import SQLAlchemy
-
+from sqlalchemy.orm import relationship
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -32,6 +32,8 @@ class Recipe(db.Model):
     instructions = db.Column(db.Text)
     cooking_time = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    user = relationship("User", backref="recipes")
 
     def __repr__(self):
         return f"<Recipe recipe_id={self.recipe_id}>" 

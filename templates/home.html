@@ -7,7 +7,23 @@
 {% block body%}
 <h1>Welcome</h1>
 
-<div>
+<h2>Recent Recipes</h2>
+<ul>
+    {% for recipe in last_5_recipes %}
+        <li>
+            <strong>{{ recipe.title }}</strong><br>
+            Category: {{ recipe.category }}<br>
+            Description: {{ recipe.description }}<br>
+            Ingredients: {{ recipe.ingredients }}<br>
+            Instructions: {{ recipe.instructions }}<br>
+            Cooking Time: {{ recipe.cooking_time }}<br>
+            Created By: {{ user_usernames[i] }}<br>
+
+        </li>
+    {% endfor %}       
+</ul>
+
+<!-- <div>
     <h2>Create Account</h2>
     <form action="/users" method="POST">
     <p>
@@ -40,5 +56,5 @@
 
     </form>
 
-</div>
+</div> -->
 {% endblock %}
