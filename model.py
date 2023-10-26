@@ -33,7 +33,7 @@ class Recipe(db.Model):
     cooking_time = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    user = relationship("User", backref="recipes")
+    creator = relationship("User", backref="recipes_created")
 
     def __repr__(self):
         return f"<Recipe recipe_id={self.recipe_id}>" 

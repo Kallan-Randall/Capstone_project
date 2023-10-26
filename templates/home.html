@@ -17,7 +17,7 @@
             Ingredients: {{ recipe.ingredients }}<br>
             Instructions: {{ recipe.instructions }}<br>
             Cooking Time: {{ recipe.cooking_time }}<br>
-            Created By: {{ user_usernames[i] }}<br>
+            Created by: {% if recipe.creator %}{{ recipe.creator.username }}{% else %}Unknown{% endif %}<br>
 
         </li>
     {% endfor %}       

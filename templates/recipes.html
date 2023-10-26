@@ -1,9 +1,10 @@
 {% extends 'base.html'%}
 {% block title %}Better Recipes{% endblock %}
 
-{% block head %}
+{% block head %}{% endblock%}
 <h1>Welcome</h1>
 
+{% block body%}
 <div>
     <h2>Create Recipe</h2>
     <form action="/recipes" method="POST">
@@ -31,6 +32,5 @@
     </form>
     
 </div>
-
-
 {% endblock %}        
+
