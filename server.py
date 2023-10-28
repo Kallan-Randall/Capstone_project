@@ -2,7 +2,7 @@
 
 # imports here
 from flask import Flask, render_template, request, flash, session, redirect, url_for
-
+from flask_login import LoginManager
 from model import connect_to_db, db, Recipe, User
 import crud
 
@@ -11,6 +11,13 @@ from jinja2 import StrictUndefined
 app = Flask(__name__)
 app.secret_key = "this is secret key"
 app.jinja_env.undefined = StrictUndefined
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
 
 @app.route("/")
 def home():
