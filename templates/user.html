@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Welcome, {{ current_user.username }}</h1>
+
+    <h2>Your Recipes</h2>
+    <ul>
+        {% for recipe in user_recipes %}
+            <li>
+                <strong>{{ recipe.title }}</strong><br>
+                Category: {{ recipe.category }}<br>
+                Description: {{ recipe.description }}<br>
+                Ingredients: {{ recipe.ingredients }}<br>
+                Instructions: {{ recipe.instructions }}<br>
+                Cooking Time: {{ recipe.cooking_time }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

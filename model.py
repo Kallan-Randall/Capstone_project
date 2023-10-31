@@ -18,6 +18,18 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User user_id={self.user_id} username={self.username} email={self.email}>"
+    
+    def is_active(self):
+        return True
+    
+    def get_id(self):
+        return str(self.user_id)
+    
+    def is_authenticated(self):
+        return True
+    
+    def is_anonymous(self):
+        return False
 
 class Recipe(db.Model):
     """A recipe"""
