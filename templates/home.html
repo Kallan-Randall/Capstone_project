@@ -2,59 +2,33 @@
 
 {% block title %}Better Recipes{% endblock %}
 
-{% block head %}{% endblock %}        
+{% block head %}
+    <link rel="stylesheet" href="path/to/bootstrap.css">
+    <style>
+    </style>
+{% endblock %}
 
-{% block body%}
-<h1>Welcome</h1>
+{% block body %}
+<div class="container">
+    <h1>Welcome</h1>
 
-<h2>Recent Recipes</h2>
-<ul>
-    {% for recipe in last_5_recipes %}
-        <li>
-            <strong>{{ recipe.title }}</strong><br>
-            Category: {{ recipe.category }}<br>
-            Description: {{ recipe.description }}<br>
-            Ingredients: {{ recipe.ingredients }}<br>
-            Instructions: {{ recipe.instructions }}<br>
-            Cooking Time: {{ recipe.cooking_time }}<br>
-            Created by: {% if recipe.creator %}{{ recipe.creator.username }}{% else %}Unknown{% endif %}<br>
-
-        </li>
-    {% endfor %}       
-</ul>
-
-<!-- <div>
-    <h2>Create Account</h2>
-    <form action="/users" method="POST">
-    <p>
-        Email <input type="text" name="email">
-    </p>
-    <p>
-        username <input type="text" name="username">
-    </p>
-    <p>
-        password <input type="password" name="password">
-    </p>
-    <p>
-        <button type="submit">Create User</button>
-    </p>
-    </form>
-    
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-    <p>
-        Email/Username <input type="text" name="email_or_username">
-    </p>
-    <p>
-        Password <input type="password" name="password">
-    </p>
-    <p>
-        <button type="submit">Login</button>
-    </p>
-
-
-
-    </form>
-
-</div> -->
+    <h2>Recent Recipes</h2>
+    <div class="row">
+        {% for recipe in last_5_recipes %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <p class="card-text">Category: {{ recipe.category }}</p>
+                    <!-- <p class="card-text">{{ recipe.description }}</p>
+                    <p class="card-text">Ingredients: {{ recipe.ingredients }}</p>
+                    <p class="card-text">Instructions: {{ recipe.instructions }}</p> -->
+                    <p class="card-text">Cooking Time: {{ recipe.cooking_time }}</p>
+                    <p class="card-text">Created by: {% if recipe.creator %}{{ recipe.creator.username }}{% else %}Unknown{% endif %}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

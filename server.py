@@ -2,7 +2,7 @@
 
 # imports here
 from flask import Flask, render_template, request, flash, session, redirect, url_for
-
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from model import connect_to_db, db, Recipe, User
 import crud
 
@@ -12,13 +12,23 @@ app = Flask(__name__)
 app.secret_key = "this is secret key"
 app.jinja_env.undefined = StrictUndefined
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 @app.route("/")
 def home():
     last_5_recipes = crud.get_5_last_recipes()
     
-    creator_usernames = [(recipe.creator.username) if recipe.creator else 'Unknown' for recipe in last_5_recipes]
+    # creator_usernames = [(recipe.creator.username) if recipe.creator else 'Unknown' for recipe in last_5_recipes]
     
-    return render_template("home.html", last_5_recipes=last_5_recipes, creator_usernames=creator_usernames)
+    # return render_template("home.html", last_5_recipes=last_5_recipes, creator_usernames=creator_usernames)
+    return render_template("home.html", last_5_recipes=last_5_recipes)
 
 @app.route("/register")
 def register_page():
@@ -28,7 +38,35 @@ def register_page():
 def login_page():
     return render_template("login.html")
 
+@app.route("/login", methods=["POST"])
+def login():
+    identifier = request.form['email_or_username']
+    password = request.form['password']
+
+    user = crud.get_user_by_username_or_email(identifier)
+
+    if user and user.password == password:
+        login_user(user)
+        flash(f"Welcome back {user.username}")
+        
+        session['username'] = user.username
+
+        return redirect("/")
+        
+    else:
+        flash("login failed. Check you email/username and password.")
+        return redirect("/")
+    
+@app.route("/user")
+@login_required
+def user():
+    
+    user_recipes = crud.get_recipes(current_user)
+    
+    return render_template("/user.html", user_recipes=user_recipes)
+
 @app.route("/recipes")
+@login_required
 def recipe():
     return render_template("recipes.html")
 
@@ -42,7 +80,7 @@ def create_recipe():
     instructions = request.form.get("instructions")
     cooking_time = request.form.get("cooking_time")
 
-    new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time)
+    new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time, current_user)
 
     db.session.add(new_recipe)
     db.session.commit()
@@ -69,22 +107,14 @@ def register_user():
     
     return redirect("/")
 
-@app.route("/login", methods=["POST"])
-def login():
-    identifier = request.form['email_or_username']
-    password = request.form['password']
 
-    user = crud.get_user_by_username_or_email(identifier)
-
-    if user and user.password == password:
-        flash(f"Welcome back {user.username}")
-        return redirect("/")
-    else:
-        flash("login failed. Check you email/username and password.")
-        return redirect("/")
-    
-
-
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    flash("You have been logged out.")
+    return redirect("/")
 
 if __name__ == "__main__":
     connect_to_db(app)
