@@ -30,6 +30,10 @@ def create_recipe(title, category, description, ingredients, instructions, cooki
     new_recipe = Recipe(title=title, category=category, description=description, ingredients=ingredients, instructions=instructions, cooking_time=cooking_time, user=user)
     return new_recipe
 
+def get_recipe_by_id(recipe_id):
+    """Gets a recipe by recipe_id"""
+    return Recipe.query.get(recipe_id)
+
 def update_recipe(recipe, title, category, description, ingredients, instructions, cooking_time):
     """Updates existing recipe with new information"""
     recipe.title = title

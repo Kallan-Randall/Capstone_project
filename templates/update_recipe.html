@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Recipe{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Edit Recipe</h1>
+    <form action="/update_recipe/{{ recipe.recipe_id }}" method="POST">
+        <p>
+            Title <input type="text" name="title" value="{{ recipe.title }}">
+        </p>
+        <p>
+            Category <input type="text" name="category" value="{{ recipe.category }}">
+        </p>
+        <p>
+            Description <input type="text" name="description" value="{{ recipe.description }}">
+        </p>
+        <p>
+            Ingredients <input type="text" name="ingredients" value="{{ recipe.ingredients }}">
+        </p>
+        <p>
+            Instructions <input type="text" name="instructions" value="{{ recipe.instructions }}">
+        </p>
+        <p>
+            Cooking Time <input type="text" name="cooking_time" value="{{ recipe.cooking_time }}">
+        </p>
+        <p>
+            <button type="submit">Update Recipe</button>
+        </p>
+    </form>
+</div>
+
+{% endblock %}
+
+

@@ -34,6 +34,24 @@ def home():
 def register_page():
     return render_template("register.html")
 
+@app.route("/users", methods=["POST"])
+def register_user():
+    "Creates a new user."
+    email = request.form.get("email")
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+    if user:
+        flash("Email has already been used. Try a different email.")
+    else:
+        user = crud.create_user(email, username, password)
+        db.session.add(user)
+        db.session.commit()
+        flash(f"Account created! Welcome {user.username}")
+    
+    return redirect("/")
+
 @app.route("/login")
 def login_page():
     return render_template("login.html")
@@ -89,23 +107,61 @@ def create_recipe():
 
     return redirect("/recipes")
 
-@app.route("/users", methods=["POST"])
-def register_user():
-    "Creates a new user."
-    email = request.form.get("email")
-    username = request.form.get("username")
-    password = request.form.get("password")
-
-    user = crud.get_user_by_email(email)
-    if user:
-        flash("Email has already been used. Try a different email.")
+@app.route("/recipes/<int:recipe_id>")
+def recipe_details(recipe_id):
+    recipe = crud.get_recipe_by_id(recipe_id) 
+    if recipe:
+        return render_template("recipe_details.html", recipe=recipe)
     else:
-        user = crud.create_user(email, username, password)
-        db.session.add(user)
-        db.session.commit()
-        flash(f"Account created! Welcome {user.username}")
+        flash("Recipe not found.")
+        return redirect("/")
+
+@app.route("/update_recipe/<int:recipe_id>", methods=["GET", "POST"])
+@login_required
+def update_recipe(recipe_id):
+    recipe = crud.get_recipe_by_id(recipe_id)
+    if not recipe:
+        flash("Recipe not found.")
+        return redirect("/user")
     
-    return redirect("/")
+    if request.method == "POST":
+        title = request.form.get("title")
+        category = request.form.get("category")
+        description = request.form.get("description")
+        ingredients = request.form.get("ingredients")
+        instructions  = request.form.get("instructions")
+        cooking_time = request.form.get("cooking_time")
+
+        recipe.title = title
+        recipe.category = category
+        recipe.description = description
+        recipe.ingredients = ingredients
+        recipe.instructions = instructions
+        recipe.cooking_time = cooking_time
+
+        db.session.commit()
+        flash("Recipe updated!")
+        return redirect("/user")
+    
+    return render_template("update_recipe.html", recipe=recipe)
+
+@app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])
+@login_required
+def delete_recipe(recipe_id):
+    recipe = crud.get_recipe_by_id(recipe_id)
+    if not recipe:
+        flash("Recipe not found.")
+        return redirect("/user")
+    
+    if recipe.user_id != current_user.user_id:
+        flash("You can only delete your own recipe.")
+        return redirect ("/user")
+    
+    db.session.delete(recipe)
+    db.session.commit()
+
+    flash("Recipe deleted!")
+    return redirect("/user")
 
 
 @app.route("/logout")
