@@ -29,3 +29,19 @@ def create_recipe(title, category, description, ingredients, instructions, cooki
     """Creates a new recipe object and returns it."""
     new_recipe = Recipe(title=title, category=category, description=description, ingredients=ingredients, instructions=instructions, cooking_time=cooking_time, user=user)
     return new_recipe
+
+def update_recipe(recipe, title, category, description, ingredients, instructions, cooking_time):
+    """Updates existing recipe with new information"""
+    recipe.title = title
+    recipe.category = category
+    recipe.description = description
+    recipe.ingredients = ingredients
+    recipe.instructions = instructions
+    recipe.cooking_time = cooking_time
+    db.session.commit()
+
+
+def delete_recipe(recipe):
+    """Deletes a recipe from the database"""
+    db.session.delete(recipe)
+    db.session.commit()
