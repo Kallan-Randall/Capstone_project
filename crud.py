@@ -2,7 +2,7 @@
 from sqlalchemy import or_
 from model import db, connect_to_db, User, Recipe
 
-#Functions below
+#Functions 
 
 def create_user(email, username, password):
     """Creates a new user object and returns it."""
@@ -43,7 +43,6 @@ def update_recipe(recipe, title, category, description, ingredients, instruction
     recipe.instructions = instructions
     recipe.cooking_time = cooking_time
     db.session.commit()
-
 
 def delete_recipe(recipe):
     """Deletes a recipe from the database"""
