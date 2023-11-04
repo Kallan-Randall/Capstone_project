@@ -145,6 +145,14 @@ def update_recipe(recipe_id):
     
     return render_template("update_recipe.html", recipe=recipe)
 
+@app.route("/search", methods=["GET"])
+def search_recipes():
+    query = request.args.get("q")
+
+    search_results = crud.search_recipes(query)
+
+    return render_template("search_results.html", search_results=search_results)
+
 @app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])
 @login_required
 def delete_recipe(recipe_id):

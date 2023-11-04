@@ -44,6 +44,10 @@ def update_recipe(recipe, title, category, description, ingredients, instruction
     recipe.cooking_time = cooking_time
     db.session.commit()
 
+def search_recipes(query):
+    """Searches for a recipe by name or ingredient."""
+    return Recipe.query.filter((Recipe.title.ilike(f"%{query}%")) | (Recipe.ingredients.ilike(f"%{query}%"))).all()
+
 def delete_recipe(recipe):
     """Deletes a recipe from the database"""
     db.session.delete(recipe)
