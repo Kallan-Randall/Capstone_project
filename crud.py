@@ -2,7 +2,7 @@
 from sqlalchemy import or_
 from model import db, connect_to_db, User, Recipe
 
-#Functions below
+#Functions 
 
 def create_user(email, username, password):
     """Creates a new user object and returns it."""
@@ -29,3 +29,26 @@ def create_recipe(title, category, description, ingredients, instructions, cooki
     """Creates a new recipe object and returns it."""
     new_recipe = Recipe(title=title, category=category, description=description, ingredients=ingredients, instructions=instructions, cooking_time=cooking_time, user=user)
     return new_recipe
+
+def get_recipe_by_id(recipe_id):
+    """Gets a recipe by recipe_id"""
+    return Recipe.query.get(recipe_id)
+
+def update_recipe(recipe, title, category, description, ingredients, instructions, cooking_time):
+    """Updates existing recipe with new information"""
+    recipe.title = title
+    recipe.category = category
+    recipe.description = description
+    recipe.ingredients = ingredients
+    recipe.instructions = instructions
+    recipe.cooking_time = cooking_time
+    db.session.commit()
+
+def search_recipes(query):
+    """Searches for a recipe by name or ingredient."""
+    return Recipe.query.filter((Recipe.title.ilike(f"%{query}%")) | (Recipe.ingredients.ilike(f"%{query}%"))).all()
+
+def delete_recipe(recipe):
+    """Deletes a recipe from the database"""
+    db.session.delete(recipe)
+    db.session.commit()

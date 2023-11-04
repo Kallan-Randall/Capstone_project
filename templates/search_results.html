@@ -1,20 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Better Recipes{% endblock %}
-
-{% block head %}
-    <!-- <link rel="stylesheet" href="path/to/bootstrap.css"> -->
-    <style>
-    </style>
-{% endblock %}
-
-{% block body %}
-<div class="container">
-    <h1>Welcome</h1>
-
-    <h2>Recent Recipes</h2>
-    <div class="row">
-        {% for recipe in last_5_recipes %}
+{% block body%}
+<h1>Search Results</h1>
+<h2>Search Results</h2>
+<div class="row">
+    {% for recipe in search_results %}
         <div class="col-md-4">
             <div class="card mb-3">
                 <div class="card-body">
@@ -22,12 +12,11 @@
                         <a href="{{ url_for('recipe_details', recipe_id=recipe.recipe_id) }}">{{ recipe.title }}</a>
                     </h5>
                     <p class="card-text">Category: {{ recipe.category }}</p>
-                    <p class="card-text">Cooking Time: {{ recipe.cooking_time }}</p>
+                    <p class="card-text">Cooking Time: {{ recipe.cooking_time }} minutes</p>
                     <p class="card-text">Created by: {% if recipe.creator %}{{ recipe.creator.username }}{% else %}Unknown{% endif %}</p>
                 </div>
             </div>
         </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
