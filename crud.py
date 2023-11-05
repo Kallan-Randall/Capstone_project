@@ -25,9 +25,9 @@ def get_5_last_recipes():
     """Gets 5 last recipes created"""
     return Recipe.query.order_by(Recipe.recipe_id.desc()).limit(5).all()
 
-def create_recipe(title, category, description, ingredients, instructions, cooking_time, user):
+def create_recipe(title, category, description, ingredients, instructions, cooking_time, user, picture_link):
     """Creates a new recipe object and returns it."""
-    new_recipe = Recipe(title=title, category=category, description=description, ingredients=ingredients, instructions=instructions, cooking_time=cooking_time, user=user)
+    new_recipe = Recipe(title=title, category=category, description=description, ingredients=ingredients, instructions=instructions, cooking_time=cooking_time, user=user, picture=picture_link)
     return new_recipe
 
 def get_recipe_by_id(recipe_id):

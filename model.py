@@ -43,6 +43,7 @@ class Recipe(db.Model):
     ingredients = db.Column(db.Text)
     instructions = db.Column(db.Text)
     cooking_time = db.Column(db.Integer)
+    picture = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     creator = relationship("User", backref="recipes_created")

@@ -1,36 +1,37 @@
 {% extends 'base.html'%}
 {% block title %}Better Recipes{% endblock %}
 
-{% block head %}{% endblock%}
+{% block body %}
 <h1>Welcome</h1>
 
-{% block body%}
 <div>
     <h2>Create Recipe</h2>
-    <form action="/recipes" method="POST">
-    <p>
-        Title <input type="text" name="title">
-    </p>
-    <p>
-        Category <input type="text" name="category">
-    </p>
-    <p>
-        description <input type="text" name="description">
-    </p>
-    <p>
-        ingredients <input type="text" name="ingredients">
-    </p>
-    <p>
-        instructions <input type="text" name="instructions">
-    </p>
-    <p>
-        Cooking Time <input type="text" name="cooking_time">
-    </p>
-    <p>
-        <button type="submit">Create Recipe</button>
-    </p>
+    <form action="/recipes" method="POST" enctype="multipart/form-data">
+        <p>
+            Title: <input type="text" name="title">
+        </p>
+        <p>
+            Category: <input type="text" name="category">
+        </p>
+        <p>
+            Description: <input type="text" name="description">
+        </p>
+        <p>
+            Ingredients: <input type="text" name="ingredients">
+        </p>
+        <p>
+            Instructions: <input type="text" name="instructions">
+        </p>
+        <p>
+            Cooking Time: <input type="text" name="cooking_time">
+        </p>
+        <p>
+            Picture URL: <input type="text" name="picture">
+        </p>
+        <p>
+            <button type="submit">Create Recipe</button>
+        </p>
     </form>
-    
 </div>
-{% endblock %}        
 
+{% endblock %}

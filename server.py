@@ -4,7 +4,9 @@
 from flask import Flask, render_template, request, flash, session, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from model import connect_to_db, db, Recipe, User
-import crud
+from werkzeug.utils import secure_filename
+from forms import RecipeForm
+import crud, os
 
 from jinja2 import StrictUndefined
 
@@ -91,21 +93,24 @@ def recipe():
 @app.route("/recipes", methods=["POST"])
 def create_recipe():
     """Creates a new recipe"""
-    title = request.form.get("title")
-    category = request.form.get("category")
-    description = request.form.get("description")
-    ingredients = request.form.get("ingredients")
-    instructions = request.form.get("instructions")
-    cooking_time = request.form.get("cooking_time")
 
-    new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time, current_user)
+    if request.method == 'POST':
+        title = request.form.get("title")
+        category = request.form.get("category")
+        description = request.form.get("description")
+        ingredients = request.form.get("ingredients")
+        instructions = request.form.get("instructions")
+        cooking_time = request.form.get("cooking_time")
+        picture_url = request.form.get("picture")
 
-    db.session.add(new_recipe)
-    db.session.commit()
+        new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time, current_user, picture_url)
 
-    flash("Recipe created successfully!")
+        db.session.add(new_recipe)
+        db.session.commit()
 
-    return redirect("/recipes")
+        flash("Recipe created successfully!")
+
+    return render_template("recipes.html")
 
 @app.route("/recipes/<int:recipe_id>")
 def recipe_details(recipe_id):
