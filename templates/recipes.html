@@ -1,4 +1,5 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
 {% block title %}Better Recipes{% endblock %}
 
 {% block body %}
@@ -6,32 +7,59 @@
 
 <div>
     <h2>Create Recipe</h2>
-    <form action="/recipes" method="POST" enctype="multipart/form-data">
-        <p>
-            Title: <input type="text" name="title">
-        </p>
-        <p>
-            Category: <input type="text" name="category">
-        </p>
-        <p>
-            Description: <input type="text" name="description">
-        </p>
-        <p>
-            Ingredients: <input type="text" name="ingredients">
-        </p>
-        <p>
-            Instructions: <input type="text" name="instructions">
-        </p>
-        <p>
-            Cooking Time: <input type="text" name="cooking_time">
-        </p>
-        <p>
-            Picture URL: <input type="text" name="picture">
-        </p>
-        <p>
-            <button type="submit">Create Recipe</button>
-        </p>
+    <form class="row g-3" action="/recipes" method="POST" enctype="multipart/form-data">
+        <div class="col-md-6">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Recipe title">
+        </div>
+
+        <div class="col-md-6">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category" name="category">
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Recipe description">
+        </div>
+
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredients</label>
+            <input type="text" class="form-control" id="ingredients" name="ingredients" placeholder="Enter ingredients separated by commas">
+        </div>
+
+        <div class="col-12">
+            <label for="instructions" class="form-label">Instructions</label>
+            <input type="text" class="form-control" id="instructions" name="instructions" placeholder="Recipe instructions">
+        </div>
+
+        <div class="col-md-6">
+            <label for="cooking_time" class="form-label">Cooking Time (in minutes)</label>
+            <select class="form-select" id="cooking_time" name="cooking_time">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <label for="picture" class="form-label">Picture URL</label>
+            <input type="text" class="form-control" id="picture" name="picture" placeholder="Picture URL">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Create Recipe</button>
+        </div>
     </form>
 </div>
-
 {% endblock %}

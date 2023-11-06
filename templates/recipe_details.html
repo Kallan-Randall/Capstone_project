@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="recipe-details">
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3" style="max-width: 900px;">
         <div class="row g-0">
             <div class="col-md-4">
                 <img src="{{ recipe.picture }}" class="img-fluid rounded-start" alt="{{ recipe.title }}">
@@ -15,6 +15,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ recipe.title }}</h5>
                     <p class="card-text">{{ recipe.description }}</p>
+                    <p class="card-text">Ingredients: {{ recipe.ingredients }}</p>
                     <p class="card-text"><small class="text-muted">Cooking Time: {{ recipe.cooking_time }} mins</small></p>
                     <p class="card-text"><small class="text-muted">Category: {{ recipe.category }}</small></p>
                 </div>

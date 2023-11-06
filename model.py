@@ -38,7 +38,7 @@ class Recipe(db.Model):
 
     recipe_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String)
-    category = db.Column(db.Integer)
+    category = db.Column(db.String)
     description = db.Column(db.Text)
     ingredients = db.Column(db.Text)
     instructions = db.Column(db.Text)

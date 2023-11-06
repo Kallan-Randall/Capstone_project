@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 from model import connect_to_db, db, Recipe, User
 from werkzeug.utils import secure_filename
 from forms import RecipeForm
-import crud, os
+import crud, os, json
 
 from jinja2 import StrictUndefined
 
@@ -105,6 +105,9 @@ def create_recipe():
 
         new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time, current_user, picture_url)
 
+        new_recipe.ingredients = ingredients
+
+
         db.session.add(new_recipe)
         db.session.commit()
 
@@ -112,9 +115,12 @@ def create_recipe():
 
     return render_template("recipes.html")
 
+
+
+
 @app.route("/recipes/<int:recipe_id>")
 def recipe_details(recipe_id):
-    recipe = crud.get_recipe_by_id(recipe_id) 
+    recipe = crud.get_recipe_by_id(recipe_id)
     if recipe:
         return render_template("recipe_details.html", recipe=recipe)
     else:
@@ -149,6 +155,10 @@ def update_recipe(recipe_id):
         return redirect("/user")
     
     return render_template("update_recipe.html", recipe=recipe)
+
+@app.route("/add_ingredient", methods=["POST"])
+def add_ingredient():
+    return render_template("recipes.html")
 
 @app.route("/search", methods=["GET"])
 def search_recipes():
