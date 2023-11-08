@@ -112,9 +112,6 @@ def create_recipe():
 
     return render_template("recipes.html")
 
-
-
-
 @app.route("/recipes/<int:recipe_id>")
 def recipe_details(recipe_id):
     recipe = crud.get_recipe_by_id(recipe_id)
@@ -182,7 +179,6 @@ def delete_recipe(recipe_id):
 
     flash("Recipe deleted!")
     return redirect("/user")
-
 
 @app.route("/logout")
 @login_required
