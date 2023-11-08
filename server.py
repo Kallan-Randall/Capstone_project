@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 from model import connect_to_db, db, Recipe, User
 from werkzeug.utils import secure_filename
 from forms import RecipeForm
-import crud, os
+import crud, os, json
 
 from jinja2 import StrictUndefined
 
@@ -27,9 +27,6 @@ def load_user(user_id):
 def home():
     last_5_recipes = crud.get_5_last_recipes()
     
-    # creator_usernames = [(recipe.creator.username) if recipe.creator else 'Unknown' for recipe in last_5_recipes]
-    
-    # return render_template("home.html", last_5_recipes=last_5_recipes, creator_usernames=creator_usernames)
     return render_template("home.html", last_5_recipes=last_5_recipes)
 
 @app.route("/register")
@@ -105,6 +102,9 @@ def create_recipe():
 
         new_recipe = crud.create_recipe(title, category, description, ingredients, instructions, cooking_time, current_user, picture_url)
 
+        new_recipe.ingredients = ingredients
+
+
         db.session.add(new_recipe)
         db.session.commit()
 
@@ -114,7 +114,7 @@ def create_recipe():
 
 @app.route("/recipes/<int:recipe_id>")
 def recipe_details(recipe_id):
-    recipe = crud.get_recipe_by_id(recipe_id) 
+    recipe = crud.get_recipe_by_id(recipe_id)
     if recipe:
         return render_template("recipe_details.html", recipe=recipe)
     else:
@@ -150,6 +150,10 @@ def update_recipe(recipe_id):
     
     return render_template("update_recipe.html", recipe=recipe)
 
+@app.route("/add_ingredient", methods=["POST"])
+def add_ingredient():
+    return render_template("recipes.html")
+
 @app.route("/search", methods=["GET"])
 def search_recipes():
     query = request.args.get("q")
@@ -175,7 +179,6 @@ def delete_recipe(recipe_id):
 
     flash("Recipe deleted!")
     return redirect("/user")
-
 
 @app.route("/logout")
 @login_required

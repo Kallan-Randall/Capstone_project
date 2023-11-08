@@ -1,0 +1,127 @@
+.custom-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+}
+
+.custom-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.card {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.card img {
+    width: 100%; 
+    max-height: 500px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+}
+
+.card-title a {
+    text-decoration: none; 
+}
+
+.card-footer .btn {
+    margin: 5px;
+}
+
+.navbar {
+    background-color: #333; 
+    padding: 10px 0; 
+}
+
+.navbar-brand {
+
+    font-size: 1.25rem; 
+}
+
+.navbar-toggler-icon {
+    background-color: #fff; 
+}
+
+.nav-link {
+    color: #fff !important; 
+    margin-right: 10px; 
+}
+
+.nav-link:hover {
+    color: #00f; 
+}
+
+
+
+.btn-outline-success {
+    color: #28a745; 
+    border-color: #28a745; 
+}
+
+.auth-buttons .btn {
+    margin-right: 10px; 
+}
+
+.flash-msg {
+    background-color: #28a745; 
+    color: #fff; 
+    padding: 10px; 
+    margin-top: 10px; 
+}
+
+.search-bar {
+    margin: 10px;
+    
+}
+
+.navbar .form-control::placeholder {
+    color: white;
+}
+
+.auth-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    background-color: #fff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  }
+
+  .auth-form form {
+    text-align: center; 
+  }
+  
+  .auth-form input {
+    width: 100%; 
+    margin: 10px 0; 
+    padding: 10px; 
+  }
+  
+  .auth-form button {
+    width: 100%; 
+    padding: 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+  }
+  
+  .auth-form button:hover {
+    background-color: #0056b3; 
+  }
+
+  .recipe-details{
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+  }
