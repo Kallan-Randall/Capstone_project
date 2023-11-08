@@ -9,25 +9,25 @@
 <div class="recipe-details">
 
     {% for recipe in user_recipes %}
-    <!-- <div class="col-md-4"> -->
-        <div class="card mb-4">
-            <img src="{{ recipe.picture }}" class="img-fluid rounded-start" alt="{{ recipe.title }}">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <a href="{{ url_for('recipe_details', recipe_id=recipe.recipe_id) }}">{{ recipe.title }}</a>
-                </h5>
-                <p class="card-text">{{ recipe.description }}</p>
-                <p class="card-text"><small class="text-muted">Cooking Time: {{ recipe.cooking_time }} mins</small></p>
-                <p class="card-text"><small class="text-muted">Category: {{ recipe.category }}</small></p>
-                <div class="buttons">
-                    <a href="{{ url_for('update_recipe', recipe_id=recipe.recipe_id) }}" class="btn btn-primary">Update</a>
-                    <form action="{{ url_for('delete_recipe', recipe_id=recipe.recipe_id) }}" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
+    <div class="card mb-4">
+        <img src="{{ recipe.picture }}" class="img-fluid rounded-start" alt="{{ recipe.title }}">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="{{ url_for('recipe_details', recipe_id=recipe.recipe_id) }}">{{ recipe.title }}</a>
+            </h5>
+            <p class="card-text">{{ recipe.description }}</p>
+            <p class="card-text"><small class="text-muted">Cooking Time: {{ recipe.cooking_time }} mins</small></p>
+            <p class="card-text"><small class="text-muted">Category: {{ recipe.category }}</small></p>
+            <div class="buttons">
+                <a href="{{ url_for('update_recipe', recipe_id=recipe.recipe_id) }}" class="btn btn-primary">Update</a>
+                <form action="{{ url_for('delete_recipe', recipe_id=recipe.recipe_id) }}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>
+      
+   
 </div>
 
 {% endfor %}

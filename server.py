@@ -27,9 +27,6 @@ def load_user(user_id):
 def home():
     last_5_recipes = crud.get_5_last_recipes()
     
-    # creator_usernames = [(recipe.creator.username) if recipe.creator else 'Unknown' for recipe in last_5_recipes]
-    
-    # return render_template("home.html", last_5_recipes=last_5_recipes, creator_usernames=creator_usernames)
     return render_template("home.html", last_5_recipes=last_5_recipes)
 
 @app.route("/register")

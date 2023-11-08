@@ -21,20 +21,18 @@ h2 {
 
 .card {
     margin: 0 auto;
-    /* width: 900; */
     max-width: 900px;
-    /* text-align: center; */
 }
 
 .card img {
-    width: 100%; /* Force a specific image width */
-    max-height: 500px; /* Force a specific image height */
-    object-fit: cover; /* Crop or fit the image to maintain aspect ratio */
-    border-radius: 10px; /* Add rounded corners to the image */
+    width: 100%; 
+    max-height: 500px; 
+    object-fit: cover; 
+    border-radius: 10px; 
 }
 
 .card-title a {
-    text-decoration: none; /* Remove underlines from linked titles */
+    text-decoration: none; 
 }
 
 .card-footer .btn {
@@ -42,48 +40,48 @@ h2 {
 }
 
 .navbar {
-    background-color: #333; /* Change the background color */
-    padding: 10px 0; /* Add top and bottom padding to the navbar */
+    background-color: #333; 
+    padding: 10px 0; 
 }
 
 .navbar-brand {
 
-    font-size: 1.25rem; /* Increase font size for the brand text */
+    font-size: 1.25rem; 
 }
 
 .navbar-toggler-icon {
-    background-color: #fff; /* Change the color of the toggler icon */
+    background-color: #fff; 
 }
 
 .nav-link {
-    color: #fff !important; /* Change the color of navigation links */
-    margin-right: 10px; /* Adjust the spacing between links */
+    color: #fff !important; 
+    margin-right: 10px; 
 }
 
 .nav-link:hover {
-    color: #00f; /* Change the color on hover */
+    color: #00f; 
 }
 
 
 
 .btn-outline-success {
-    color: #28a745; /* Change the text color of the search button */
-    border-color: #28a745; /* Change the border color of the search button */
+    color: #28a745; 
+    border-color: #28a745; 
 }
 
 .auth-buttons .btn {
-    margin-right: 10px; /* Adjust spacing between auth buttons */
+    margin-right: 10px; 
 }
 
 .flash-msg {
-    background-color: #28a745; /* Change the background color of flash messages */
-    color: #fff; /* Change the text color of flash messages */
-    padding: 10px; /* Add padding to flash messages */
-    margin-top: 10px; /* Adjust spacing between flash messages */
+    background-color: #28a745; 
+    color: #fff; 
+    padding: 10px; 
+    margin-top: 10px; 
 }
 
 .search-bar {
-    margin: 10px; /* Adjust the margin value as needed */
+    margin: 10px;
     
 }
 
@@ -92,8 +90,8 @@ h2 {
 }
 
 .auth-form {
-    width: 300px; /* Adjust the width to your preference */
-    margin: 0 auto; /* Center the container horizontally */
+    width: 300px;
+    margin: 0 auto;
     padding: 20px; 
     border: 1px solid #ccc; 
     background-color: #fff; 
