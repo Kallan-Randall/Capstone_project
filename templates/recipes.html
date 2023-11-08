@@ -3,10 +3,9 @@
 {% block title %}Better Recipes{% endblock %}
 
 {% block body %}
-<h1>Welcome</h1>
+<h1>Create A New Recipe</h1>
 
-<div>
-    <h2>Create Recipe</h2>
+<div class ="custom-form">
     <form class="row g-3" action="/recipes" method="POST" enctype="multipart/form-data">
         <div class="col-md-6">
             <label for="title" class="form-label">Title</label>
@@ -39,17 +38,7 @@
 
         <div class="col-md-6">
             <label for="cooking_time" class="form-label">Cooking Time (in minutes)</label>
-            <select class="form-select" id="cooking_time" name="cooking_time">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-            </select>
+            <input type="number" class="form-control" id="cooking_time" name="cooking_time" placeholder="Enter cooking time in minutes">
         </div>
 
         <div class="col-12">

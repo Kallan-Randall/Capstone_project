@@ -1,31 +1,38 @@
 {% extends "base.html" %}
 
 {% block title %}{% endblock %}
-{% block body %}
-<div class="container">
-    <h1>Welcome, {{ current_user.username }}</h1>
 
-    <h2>Your Recipes</h2>
-    <div class="row">
-        {% for recipe in user_recipes %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ recipe.title }}</h5>
-                        <p class="card-text">Category: {{ recipe.category }}</p>
-                        <p class="card-text">Description: {{ recipe.description }}</p>
-                        <p class="card-text">Cooking Time: {{ recipe.cooking_time }} minutes</p>
-                        <p class="card-text">Created by: {{ recipe.creator.username if recipe.creator else 'Unknown' }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ url_for('update_recipe', recipe_id=recipe.recipe_id) }}" class="btn btn-primary">Update Recipe</a>
-                        <form action="{{ url_for('delete_recipe', recipe_id=recipe.recipe_id) }}" method="post" class="d-inline">
-                            <input type="submit" value="Delete Recipe" class="btn btn-danger">
-                        </form>
-                    </div>
+{% block body %}
+<h1>Your Recipes</h1>
+
+
+<div class="recipe-details">
+
+    {% for recipe in user_recipes %}
+    <!-- <div class="col-md-4"> -->
+        <div class="card mb-4">
+            <img src="{{ recipe.picture }}" class="img-fluid rounded-start" alt="{{ recipe.title }}">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ url_for('recipe_details', recipe_id=recipe.recipe_id) }}">{{ recipe.title }}</a>
+                </h5>
+                <p class="card-text">{{ recipe.description }}</p>
+                <p class="card-text"><small class="text-muted">Cooking Time: {{ recipe.cooking_time }} mins</small></p>
+                <p class="card-text"><small class="text-muted">Category: {{ recipe.category }}</small></p>
+                <div class="buttons">
+                    <a href="{{ url_for('update_recipe', recipe_id=recipe.recipe_id) }}" class="btn btn-primary">Update</a>
+                    <form action="{{ url_for('delete_recipe', recipe_id=recipe.recipe_id) }}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
-        {% endfor %}
+        </div>
     </div>
 </div>
+
+{% endfor %}
+
 {% endblock %}
+   
+    
+

@@ -1,0 +1,129 @@
+.custom-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+}
+
+.custom-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.card {
+    margin: 0 auto;
+    /* width: 900; */
+    max-width: 900px;
+    /* text-align: center; */
+}
+
+.card img {
+    width: 100%; /* Force a specific image width */
+    max-height: 500px; /* Force a specific image height */
+    object-fit: cover; /* Crop or fit the image to maintain aspect ratio */
+    border-radius: 10px; /* Add rounded corners to the image */
+}
+
+.card-title a {
+    text-decoration: none; /* Remove underlines from linked titles */
+}
+
+.card-footer .btn {
+    margin: 5px;
+}
+
+.navbar {
+    background-color: #333; /* Change the background color */
+    padding: 10px 0; /* Add top and bottom padding to the navbar */
+}
+
+.navbar-brand {
+
+    font-size: 1.25rem; /* Increase font size for the brand text */
+}
+
+.navbar-toggler-icon {
+    background-color: #fff; /* Change the color of the toggler icon */
+}
+
+.nav-link {
+    color: #fff !important; /* Change the color of navigation links */
+    margin-right: 10px; /* Adjust the spacing between links */
+}
+
+.nav-link:hover {
+    color: #00f; /* Change the color on hover */
+}
+
+
+
+.btn-outline-success {
+    color: #28a745; /* Change the text color of the search button */
+    border-color: #28a745; /* Change the border color of the search button */
+}
+
+.auth-buttons .btn {
+    margin-right: 10px; /* Adjust spacing between auth buttons */
+}
+
+.flash-msg {
+    background-color: #28a745; /* Change the background color of flash messages */
+    color: #fff; /* Change the text color of flash messages */
+    padding: 10px; /* Add padding to flash messages */
+    margin-top: 10px; /* Adjust spacing between flash messages */
+}
+
+.search-bar {
+    margin: 10px; /* Adjust the margin value as needed */
+    
+}
+
+.navbar .form-control::placeholder {
+    color: white;
+}
+
+.auth-form {
+    width: 300px; /* Adjust the width to your preference */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    background-color: #fff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  }
+
+  .auth-form form {
+    text-align: center; 
+  }
+  
+  .auth-form input {
+    width: 100%; 
+    margin: 10px 0; 
+    padding: 10px; 
+  }
+  
+  .auth-form button {
+    width: 100%; 
+    padding: 10px; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+  }
+  
+  .auth-form button:hover {
+    background-color: #0056b3; 
+  }
+
+  .recipe-details{
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+  }

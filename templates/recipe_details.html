@@ -15,13 +15,18 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ recipe.title }}</h5>
                     <p class="card-text">{{ recipe.description }}</p>
-                    <p class="card-text">Ingredients: {{ recipe.ingredients }}</p>
+                    <p class="card-text">Ingredients:</p>
+                    <ul>
+                        {% for ingredient in recipe.ingredients.split(',') %}
+                        <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>                    
                     <p class="card-text"><small class="text-muted">Cooking Time: {{ recipe.cooking_time }} mins</small></p>
+                    <p class="card-text">Instructions: <br>{{ recipe.instructions }}</p>
                     <p class="card-text"><small class="text-muted">Category: {{ recipe.category }}</small></p>
                 </div>
             </div>
         </div>
     </div>
-    <a href="/">Back to Home</a>
 </div>
 {% endblock %}
